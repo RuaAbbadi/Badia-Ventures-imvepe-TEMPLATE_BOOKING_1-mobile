@@ -34,6 +34,15 @@ export const apiPut = async (url, data, token) => {
 	});
 };
 
+export const apiDelete = async (url, token) => {
+	return await axios.delete(API_URL + url, {
+		headers: {
+			"Content-Type": "application/json",
+			"auth-token": token,
+		},
+	});
+};
+
 const CONFIGImage = {
 	"Content-Type": "multipart/form-data",
 };

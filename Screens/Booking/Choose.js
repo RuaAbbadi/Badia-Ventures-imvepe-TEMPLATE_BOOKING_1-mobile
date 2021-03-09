@@ -105,10 +105,10 @@ export default function Choose({ navigation }) {
 				<View style={styles.info}>
 					<View>
 						<Text style={{ fontSize: 23, color: "#333533" }}>
-							{product?.name}
+							{product.name}
 						</Text>
 						<Text style={{ fontSize: 13, color: "#333533" }}>
-							{product?.description}
+							{product.description}
 						</Text>
 					</View>
 

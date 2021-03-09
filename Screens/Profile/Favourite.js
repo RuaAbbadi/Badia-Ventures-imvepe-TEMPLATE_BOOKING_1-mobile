@@ -11,22 +11,13 @@ import {
 import { wp, hp } from "../../Components/Dimension/dimen";
 import Swipeout from "react-native-swipeout";
 import { Divider } from "react-native-elements";
-import Star from "../../Components/Icons/Star";
-import { addProducts } from "../../Store/Favourites/Actions";
-import { useDispatch, useSelector } from "react-redux";
+
 import Header from "../../Components/header/header";
 import Stars from "react-native-stars";
 import { Fontisto } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 
 export default function Favourite({ navigation }) {
-	const dispatch = useDispatch();
-	const {
-		productStatus: { product, isLoading },
-	} = useSelector((state) => state.Product);
-
-	console.log(product, isLoading);
-
 	var swipeoutBtns = [
 		{
 			text: "Delete",
@@ -40,19 +31,7 @@ export default function Favourite({ navigation }) {
 		{ name: "Pasta", key: "3" },
 	];
 
-	const addProductToFav = () => {
-		dispatch(addProducts());
-	};
-
-	useEffect(() => {
-		addProductToFav();
-	}, []);
-
-	return isLoading ? (
-		<View style={{ marginTop: "45%" }}>
-			<ActivityIndicator size="large" color="#333533" />
-		</View>
-	) : (
+	return (
 		<View style={styles.container}>
 			<ScrollView>
 				<Header />

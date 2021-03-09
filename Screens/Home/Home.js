@@ -18,7 +18,10 @@ import Categoriesmenu from "../../Components/Menus/Categoriesmenu";
 import { wp, hp } from "../../Components/Dimension/dimen";
 import Header from "../../Components/header/header";
 import { getProducts, setProductId } from "../../Store/Products/Actions";
+import { setProduct_Id } from "../../Store/Favourites/Actions";
 import { useDispatch, useSelector } from "react-redux";
+import FavList from "../../Components/Lists/FavList";
+import { SuggestionCard } from "../../Components/cards/SuggestionCard";
 
 export default function Home({ navigation }) {
 	const dispatch = useDispatch();
@@ -37,8 +40,8 @@ export default function Home({ navigation }) {
 
 	const pressToFav = (id) => {
 		// To get the product id
-		dispatch(setProductId(id));
-		console.log(setProductId(id));
+		dispatch(setProduct_Id(id));
+		console.log(setProduct_Id(id));
 
 		// To navidate to product page
 		navigation.navigate("Favourite");
@@ -75,90 +78,11 @@ export default function Home({ navigation }) {
 						showsHorizontalScrollIndicator={false}
 						horizontal={true}
 						renderItem={({ item }) => (
-							<View style={styles.Foodlist}>
-								<ImageBackground
-									style={styles.ImageBack}
-									imageStyle={{
-										resizeMode: "cover",
-										borderRadius: 5,
-										backgroundColor: "#000000",
-										opacity: 0.5,
-									}}
-									source={require("../../assets/pasta.png")}
-								>
-									<View
-										style={{
-											flexDirection: "row",
-											justifyContent: "space-between",
-										}}
-									>
-										<View
-											style={{
-												marginTop: hp(11),
-												marginLeft: wp(11),
-											}}
-										>
-											<Text
-												style={{
-													fontSize: 13,
-													color: "white",
-													fontWeight: "bold",
-													maxWidth: "70%",
-												}}
-											>
-												{item.name}
-											</Text>
-										</View>
-										<View
-											style={{
-												flexDirection: "row-reverse",
-											}}
-										>
-											<Ionicons
-												name="heart"
-												size={13}
-												color="white"
-												style={{
-													marginRight: wp(10.77),
-													marginTop: hp(15.29),
-													marginLeft: "auto",
-												}}
-											/>
-										</View>
-									</View>
-
-									<View
-										style={{
-											flexDirection: "row",
-											marginTop: "auto",
-											marginLeft: wp(10.51),
-											marginBottom: 10,
-										}}
-									>
-										<Stars
-											default={item.rating}
-											count={item.rating}
-											half={true}
-											starSize={10}
-											fullStar={
-												<Fontisto name={"star"} style={[styles.myStarStyle]} />
-											}
-											emptyStar={
-												<Feather
-													name={"star"}
-													style={[styles.myStarStyle, styles.myEmptyStarStyle]}
-												/>
-											}
-											halfStar={
-												<Fontisto
-													name={"star-half"}
-													style={[styles.myStarStyle]}
-												/>
-											}
-										/>
-									</View>
-								</ImageBackground>
-							</View>
+							<SuggestionCard
+								item={item}
+								pressChoose={pressChoose}
+								pressToFav={pressToFav}
+							/>
 						)}
 					/>
 				)}
@@ -178,88 +102,10 @@ export default function Home({ navigation }) {
 				</View>
 
 				<View>
-					<FlatList
-						data={products}
-						renderItem={({ item }) => (
-							<TouchableOpacity
-								style={styles.Form1}
-								onPress={() => pressChoose(item._id)}
-							>
-								<ImageBackground
-									style={styles.ImageBack2}
-									imageStyle={{
-										resizeMode: "cover",
-										borderRadius: 5,
-										backgroundColor: "#000000",
-										opacity: 0.56,
-									}}
-									source={require("../../assets/pasta.png")}
-								>
-									<View
-										style={{
-											display: "flex",
-											alignItems: "flex-start",
-											flexDirection: "column",
-											justifyContent: "flex-start",
-										}}
-									>
-										<TouchableOpacity onPress={() => pressToFav(item._id)}>
-											<Ionicons
-												name="heart"
-												size={15}
-												color="white"
-												style={{
-													marginLeft: wp(292),
-													marginTop: hp(12),
-													marginBottom: 0,
-												}}
-											/>
-										</TouchableOpacity>
-										<Text
-											style={{
-												fontSize: 26,
-												color: "white",
-												marginLeft: wp(21),
-												marginBottom: "auto",
-											}}
-										>
-											{item.name}
-										</Text>
-									</View>
-
-									<View
-										style={{
-											flexDirection: "row",
-											marginLeft: wp(21),
-											marginTop: "auto",
-											marginBottom: hp(10),
-										}}
-									>
-										<Stars
-											default={item.rating}
-											count={item.rating}
-											half={true}
-											starSize={20}
-											fullStar={
-												<Fontisto name={"star"} style={[styles.myStarStyle]} />
-											}
-											emptyStar={
-												<Feather
-													name={"star"}
-													style={[styles.myStarStyle, styles.myEmptyStarStyle]}
-												/>
-											}
-											halfStar={
-												<Fontisto
-													name={"star-half"}
-													style={[styles.myStarStyle]}
-												/>
-											}
-										/>
-									</View>
-								</ImageBackground>
-							</TouchableOpacity>
-						)}
+					<FavList
+						products={products}
+						pressChoose={pressChoose}
+						pressToFav={pressToFav}
 					/>
 				</View>
 			</ScrollView>

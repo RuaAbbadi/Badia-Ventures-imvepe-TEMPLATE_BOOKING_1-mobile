@@ -2,6 +2,9 @@ import {
 	ADD_PRODUCT_TO_FAVS_START,
 	ADD_PRODUCT_TO_FAVS_SUCCESS,
 	ADD_PRODUCT_TO_FAVS_FAIL,
+	DELETE_PRODUCT_FROM_FAVS_START,
+	DELETE_PRODUCT_FROM_FAVS_SUCCESS,
+	DELETE_PRODUCT_FROM_FAVS_FAIL,
 	SET_PRODUCT_ID,
 } from "./Constants";
 export const FavouritesReducer = (
@@ -29,22 +32,59 @@ export const FavouritesReducer = (
 		case ADD_PRODUCT_TO_FAVS_START:
 			return {
 				...initialState,
-				isLoading: true,
+				productStatus: {
+					...initialState.productStatus,
+					isLoading: true,
+				},
 			};
 		case ADD_PRODUCT_TO_FAVS_SUCCESS:
 			return {
 				...initialState,
-				isLoading: false,
-				products: action.payload.products,
-				token: action.payload.token,
-				success: true,
+				productStatus: {
+					...initialState.productStatus,
+					isLoading: false,
+					product: action.payload.product,
+					success: true,
+				},
 			};
 		case ADD_PRODUCT_TO_FAVS_FAIL:
 			return {
 				...initialState,
-				isLoading: false,
-				errorMsg: action.payload,
-				failed: true,
+				productStatus: {
+					...initialState.productStatus,
+					isLoading: false,
+					errorMsg: action.payload,
+					failed: true,
+				},
+			};
+
+		case DELETE_PRODUCT_FROM_FAVS_START:
+			return {
+				...initialState,
+				productStatus: {
+					...initialState.productStatus,
+					isLoading: true,
+				},
+			};
+		case DELETE_PRODUCT_FROM_FAVS_SUCCESS:
+			return {
+				...initialState,
+				productStatus: {
+					...initialState.productStatus,
+					isLoading: false,
+					product: action.payload.product,
+					success: true,
+				},
+			};
+		case DELETE_PRODUCT_FROM_FAVS_FAIL:
+			return {
+				...initialState,
+				productStatus: {
+					...initialState.productStatus,
+					isLoading: false,
+					errorMsg: action.payload,
+					failed: true,
+				},
 			};
 
 		default:

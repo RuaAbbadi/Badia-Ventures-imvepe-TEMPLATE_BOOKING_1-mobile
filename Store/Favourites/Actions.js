@@ -3,14 +3,16 @@ import {
 	ADD_PRODUCT_TO_FAVS_SUCCESS,
 	ADD_PRODUCT_TO_FAVS_FAIL,
 	SET_PRODUCT_ID,
+	DELETE_PRODUCT_FROM_FAVS_START,
+	DELETE_PRODUCT_FROM_FAVS_SUCCESS,
+	DELETE_PRODUCT_FROM_FAVS_FAIL,
 } from "./Constants";
-import { apiPost } from "../utils/Api";
+import { apiPost, apiDelete } from "../utils/Api";
 
-export const addProducts = () => {
+export const addProducts = (id) => {
 	return async (dispatch, getState) => {
 		const {
 			Login: { token },
-			Favourites: { productId },
 		} = getState();
 
 		dispatch({
@@ -18,7 +20,7 @@ export const addProducts = () => {
 		});
 
 		try {
-			const response = await apiPost("/favorites/" + productId, {}, token);
+			const response = await apiPost("/favorites/" + id, {}, JSON.parse(token));
 
 			const { data } = response;
 
@@ -30,6 +32,7 @@ export const addProducts = () => {
 			});
 		} catch (error) {
 			const errorMsg = error?.response?.data?.message || "error";
+			console.log(error);
 			dispatch({
 				type: ADD_PRODUCT_TO_FAVS_FAIL,
 				payload: errorMsg,
@@ -38,7 +41,39 @@ export const addProducts = () => {
 	};
 };
 
-export const setProductId = (id) => ({
+export const DeleteProducts = (id) => {
+	return async (dispatch, getState) => {
+		const {
+			Login: { token },
+		} = getState();
+
+		dispatch({
+			type: DELETE_PRODUCT_FROM_FAVS_START,
+		});
+
+		try {
+			const response = await apiDelete("/favorites/" + id, JSON.parse(token));
+
+			const { data } = response;
+
+			console.log(data);
+
+			dispatch({
+				type: DELETE_PRODUCT_FROM_FAVS_SUCCESS,
+				payload: data,
+			});
+		} catch (error) {
+			const errorMsg = error?.response?.data?.message || "error";
+			console.log(error);
+			dispatch({
+				type: DELETE_PRODUCT_FROM_FAVS_FAIL,
+				payload: errorMsg,
+			});
+		}
+	};
+};
+
+export const setProduct_Id = (id) => ({
 	type: SET_PRODUCT_ID,
 	payload: id,
 });
