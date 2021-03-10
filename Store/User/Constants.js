@@ -12,4 +12,6 @@ export const IMAGE_UPLOAD_FAIL = "IMAGE_UPLOAD_FAIL ";
 
 export const UPDATE_PROFILE_START = "Update_Profile_START";
 export const UPDATE_PROFILE_SUCCESS = "Update_Profile_SUCCESS";
+export const UPDATE_PROFILE_FROM_FAV_SUCCESS =
+	"UPDATE_PROFILE_FROM_FAV_SUCCESS";
 export const UPDATE_PROFILE_FAIL = "Update_Profile_FAIL ";

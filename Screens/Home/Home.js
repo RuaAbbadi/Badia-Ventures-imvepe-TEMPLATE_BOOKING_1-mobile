@@ -9,10 +9,6 @@ import {
 	ImageBackground,
 	ActivityIndicator,
 } from "react-native";
-import Stars from "react-native-stars";
-import { Ionicons } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
-import { Fontisto } from "@expo/vector-icons";
 import SearchBox2 from "../../Components/Search/SearchBox2";
 import Categoriesmenu from "../../Components/Menus/Categoriesmenu";
 import { wp, hp } from "../../Components/Dimension/dimen";
@@ -78,11 +74,7 @@ export default function Home({ navigation }) {
 						showsHorizontalScrollIndicator={false}
 						horizontal={true}
 						renderItem={({ item }) => (
-							<SuggestionCard
-								item={item}
-								pressChoose={pressChoose}
-								pressToFav={pressToFav}
-							/>
+							<SuggestionCard item={item} pressChoose={pressChoose} />
 						)}
 					/>
 				)}
@@ -102,11 +94,7 @@ export default function Home({ navigation }) {
 				</View>
 
 				<View>
-					<FavList
-						products={products}
-						pressChoose={pressChoose}
-						pressToFav={pressToFav}
-					/>
+					<FavList products={products} pressChoose={pressChoose} />
 				</View>
 			</ScrollView>
 		</View>

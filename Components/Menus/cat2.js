@@ -3,7 +3,7 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { wp, hp } from "../Dimension/dimen";
 
-const Categoriesmenu = () => {
+const Cat2 = () => {
 	return (
 		<View>
 			<TouchableOpacity style={styles.contanier}>
@@ -17,6 +17,7 @@ const Categoriesmenu = () => {
 						marginBottom: hp(16),
 						marginRight: wp(13),
 						color: "white",
+						alignSelf: "center",
 					}}
 				/>
 			</TouchableOpacity>
@@ -24,7 +25,7 @@ const Categoriesmenu = () => {
 	);
 };
 
-export default Categoriesmenu;
+export default Cat2;
 const styles = StyleSheet.create({
 	contanier: {
 		borderRadius: 5,
@@ -33,7 +34,8 @@ const styles = StyleSheet.create({
 		width: wp(43),
 		height: hp(43),
 		justifyContent: "center",
-		marginRight: wp(28),
-		marginLeft: wp(8),
+		marginRight: wp(8),
+		marginLeft: wp(10),
+		marginTop: hp(29),
 	},
 });

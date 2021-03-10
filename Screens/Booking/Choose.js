@@ -100,7 +100,7 @@ export default function Choose({ navigation }) {
 			{/*Info view */}
 			<View style={styles.infoview}>
 				{/* Love Icon */}
-				<LoveIcon />
+				<LoveIcon item={product} />
 
 				<View style={styles.info}>
 					<View>

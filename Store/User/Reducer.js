@@ -11,6 +11,7 @@ import {
 	UPDATE_PROFILE_START,
 	UPDATE_PROFILE_SUCCESS,
 	UPDATE_PROFILE_FAIL,
+	UPDATE_PROFILE_FROM_FAV_SUCCESS,
 } from "./Constants";
 
 export const AuthReducer = (
@@ -108,6 +109,12 @@ export const AuthReducer = (
 				errorMsg: "",
 				success: action.payload.message,
 				token: action.payload.token,
+			};
+
+		case UPDATE_PROFILE_FROM_FAV_SUCCESS:
+			return {
+				...initialState,
+				user: action.payload.user,
 			};
 		case UPDATE_PROFILE_FAIL:
 			return {

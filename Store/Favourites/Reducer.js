@@ -6,6 +6,9 @@ import {
 	DELETE_PRODUCT_FROM_FAVS_SUCCESS,
 	DELETE_PRODUCT_FROM_FAVS_FAIL,
 	SET_PRODUCT_ID,
+	GET_FAVS_START,
+	GET_FAVS_SUCCESS,
+	GET_FAVS_FAIL,
 } from "./Constants";
 export const FavouritesReducer = (
 	initialState = {
@@ -85,6 +88,27 @@ export const FavouritesReducer = (
 					errorMsg: action.payload,
 					failed: true,
 				},
+			};
+
+		case GET_FAVS_START:
+			return {
+				...initialState,
+				isLoading: true,
+			};
+		case GET_FAVS_SUCCESS:
+			return {
+				...initialState,
+				isLoading: false,
+				products: action.payload.products,
+				token: action.payload.token,
+				success: true,
+			};
+		case GET_FAVS_FAIL:
+			return {
+				...initialState,
+				isLoading: false,
+				errorMsg: action.payload,
+				failed: true,
 			};
 
 		default:

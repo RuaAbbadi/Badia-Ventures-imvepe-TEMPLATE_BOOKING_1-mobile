@@ -15,9 +15,10 @@ import Stars from "react-native-stars";
 import { Ionicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
-import SearchBox from "../Components/SearchBox";
-import Categoriesmenu from "../Components/Categoriesmenu";
-import BookTableButton from "../Components/BookTableButton";
+import SearchBox from "../../Components/Search/SearchBox";
+import Cat2 from "../../Components/Menus/cat2";
+import BookTableButton from "../../Components/Buttons/BookButton";
+import { wp, hp } from "../../Components/Dimension/dimen";
 
 export default function HomeBookTable({ navigation }) {
 	const meals = [
@@ -80,7 +81,7 @@ export default function HomeBookTable({ navigation }) {
 									backgroundColor: "#000000",
 									opacity: 0.5,
 								}}
-								source={require("../assets/pasta.png")}
+								source={require("../../assets/pasta.png")}
 							>
 								<View style={{ flexDirection: "row" }}>
 									<View>
@@ -133,11 +134,11 @@ export default function HomeBookTable({ navigation }) {
 
 				<View style={{ flexDirection: "row", alignSelf: "center" }}>
 					<SearchBox />
-					<Categoriesmenu />
+					<Cat2 />
 					<BookTableButton />
 				</View>
 
-				<View style={{ marginBottom: 70 }}>
+				<View>
 					<FlatList
 						data={meals}
 						renderItem={({ item }) => (
@@ -153,7 +154,7 @@ export default function HomeBookTable({ navigation }) {
 										backgroundColor: "#000000",
 										opacity: 0.56,
 									}}
-									source={require("../assets/pasta.png")}
+									source={require("../../assets/pasta.png")}
 								>
 									<View style={{ flexDirection: "row" }}>
 										<Text style={styles.Title}>{item.name}</Text>
@@ -275,7 +276,6 @@ const styles = StyleSheet.create({
 	ImageBack2: {
 		margin: 13,
 		alignSelf: "center",
-
 		height: 96,
 		width: 318,
 	},

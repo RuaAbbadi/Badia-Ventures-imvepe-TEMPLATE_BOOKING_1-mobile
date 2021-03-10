@@ -15,7 +15,6 @@ import {
 import Login from "../Screens/Auth/Login";
 import Signup from "../Screens/Auth/Signup";
 import splash from "../Screens/Auth/Splash";
-import Home from "../Screens/Home/Home";
 import BottomTab from "./BottomTab";
 import Profile from "../Screens/Profile/Profile";
 import Choose from "../Screens/Booking/Choose";
@@ -56,11 +55,6 @@ const MyStack = () => {
 				<AuthStack.Screen
 					name="Profile"
 					component={Profile}
-					options={{ headerShown: false }}
-				/>
-				<AuthStack.Screen
-					name="Favourite"
-					component={Favourite}
 					options={{ headerShown: false }}
 				/>
 			</AuthStack.Navigator>

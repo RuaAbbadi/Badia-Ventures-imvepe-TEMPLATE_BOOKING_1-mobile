@@ -78,11 +78,6 @@ const MyStack = ({ navigation }) => {
 					component={BookTable}
 					options={{ title: "", headerShown: false }}
 				/>
-				<AuthStack.Screen
-					name="Favourite"
-					component={Favourite}
-					options={{ headerShown: false }}
-				/>
 			</AuthStack.Navigator>
 		</NavigationContainer>
 	);

@@ -1,43 +1,38 @@
-import React from 'react';
-import { View, StyleSheet,ImageBackground,TextInput} from 'react-native';
-import {EvilIcons} from '@expo/vector-icons';
+import React from "react";
+import { View, StyleSheet, ImageBackground, TextInput } from "react-native";
+import { EvilIcons } from "@expo/vector-icons";
+import { wp, hp } from "../Dimension/dimen";
 
-
-
-
-const SearchBox =()=>{
-
-    return(
-
-<View style={styles.contanier}>
-     <EvilIcons name ="search" size={30} color={'#696969'} style={{margin:5}}/>
-     <TextInput
-           placeholder="Search For Food You Like" 
-           placeholderTextColor="#696969"
-         
-         
-    />  
-
-</View>
-
-)}
-
+const SearchBox = () => {
+	return (
+		<View style={styles.contanier}>
+			<EvilIcons
+				name="search"
+				size={30}
+				color={"#696969"}
+				style={{ marginRight: "auto", marginLeft: "auto" }}
+			/>
+			<TextInput
+				placeholder="Search For Food You Like"
+				placeholderTextColor="#696969"
+				style={{ marginRight: "auto" }}
+			/>
+		</View>
+	);
+};
 
 export default SearchBox;
 const styles = StyleSheet.create({
-  contanier :{
-    alignItems:'center',
-    flexDirection:'row',
-    borderWidth:1.5,
-    marginTop:20,
-    borderColor:'#333533',
-    width:219,
-    height:43,
-    borderRadius:8,
-    fontSize:11,
-    marginBottom:15
-    
-    },
-
-
+	contanier: {
+		alignItems: "center",
+		flexDirection: "row",
+		borderWidth: 1.5,
+		borderColor: "#333533",
+		width: hp(214),
+		height: hp(43),
+		borderRadius: 8,
+		fontSize: 11,
+		marginBottom: 29,
+		marginTop: 29,
+	},
 });

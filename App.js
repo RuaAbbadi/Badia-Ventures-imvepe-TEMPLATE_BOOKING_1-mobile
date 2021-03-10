@@ -10,13 +10,15 @@ import store from "./Store/store";
 import Status from "./Screens/Profile/Status";
 import Drawer from "./navigation/Drawer";
 import Splash from "./Screens/Auth/Splash";
+import HomeBookTable from "./Screens/Home/HomeBookTable";
+import HomeC from "./Screens/Home/HomeC";
 
 export default function App() {
 	LogBox.ignoreAllLogs(true);
 
 	return (
 		<Provider store={store}>
-		<Navigate />
+			<Navigate />
 		</Provider>
 	);
 }

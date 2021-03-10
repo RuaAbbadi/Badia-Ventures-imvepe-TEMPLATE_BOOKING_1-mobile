@@ -7,19 +7,17 @@ import {
 	FlatList,
 	ScrollView,
 	Dimensions,
-	Image,
-	TextInput,
 	ImageBackground,
 } from "react-native";
 import Stars from "react-native-stars";
 import { Ionicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
-import SearchBox2 from "../Components/SearchBox2";
-import Categories from "../Components/Categories";
+import SearchBox2 from "../../Components/Search/SearchBox2";
+import Categories from "../../Components/Menus/Categories";
 import { wp, hp } from "../../Components/Dimension/dimen";
 
-export default function Home({ navigation }) {
+export default function HomeC({ navigation }) {
 	const meals = [
 		{ name: " Pasta", key: "1" },
 		{ name: " Pasta", key: "2" },
@@ -93,7 +91,7 @@ export default function Home({ navigation }) {
 									backgroundColor: "#000000",
 									opacity: 0.5,
 								}}
-								source={require("../assets/pasta.png")}
+								source={require("../../assets/pasta.png")}
 							>
 								<View style={{ flexDirection: "row" }}>
 									<View
@@ -178,7 +176,7 @@ export default function Home({ navigation }) {
 					<Categories />
 				</View>
 
-				<View style={{ marginBottom: 70 }}>
+				<View>
 					<FlatList
 						data={meals}
 						renderItem={({ item }) => (
@@ -194,36 +192,53 @@ export default function Home({ navigation }) {
 										backgroundColor: "#000000",
 										opacity: 0.56,
 									}}
-									source={require("../assets/pasta.png")}
+									source={require("../../assets/pasta.png")}
 								>
-									<View style={{ flexDirection: "row" }}>
-										<Text style={styles.Title}>{item.name}</Text>
-
-										<View
+									<View
+										style={{
+											display: "flex",
+											alignItems: "flex-start",
+											flexDirection: "column",
+											justifyContent: "flex-start",
+										}}
+									>
+										<TouchableOpacity>
+											<Ionicons
+												name="heart"
+												size={16}
+												color={"white"}
+												style={{
+													marginLeft: wp(292),
+													marginTop: hp(12),
+													marginBottom: 0,
+												}}
+											/>
+										</TouchableOpacity>
+										<Text
 											style={{
-												flexDirection: "row-reverse",
-												marginRight: 200,
-												marginTop: 8,
+												fontSize: 26,
+												color: "white",
+												marginLeft: wp(21),
+												marginBottom: "auto",
 											}}
 										>
-											<TouchableOpacity>
-												<Ionicons name="heart" size={15} color="white" />
-											</TouchableOpacity>
-										</View>
+											{item.name}
+										</Text>
 									</View>
 
 									<View
 										style={{
 											flexDirection: "row",
-											marginTop: 15,
-											marginLeft: 23,
+											marginLeft: wp(21),
+											marginTop: "auto",
+											marginBottom: hp(10),
 										}}
 									>
 										<Stars
-											default={3}
-											count={5}
+											default={item.rating}
+											count={item.rating}
 											half={true}
-											starSize={100}
+											starSize={20}
 											fullStar={
 												<Fontisto name={"star"} style={[styles.myStarStyle]} />
 											}

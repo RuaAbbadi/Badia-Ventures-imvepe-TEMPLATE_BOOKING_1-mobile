@@ -14,7 +14,7 @@ import { addProducts, DeleteProducts } from "../../Store/Favourites/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import { wp, hp } from "../Dimension/dimen";
 
-export const SuggestionCard = ({ item, pressChoose, pressToFav }) => {
+export const SuggestionCard = ({ item, pressChoose }) => {
 	const dispatch = useDispatch();
 	const {
 		productStatus: { product, isLoading },
