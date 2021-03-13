@@ -34,15 +34,6 @@ export default function Home({ navigation }) {
 		navigation.navigate("Choose");
 	};
 
-	const pressToFav = (id) => {
-		// To get the product id
-		dispatch(setProduct_Id(id));
-		console.log(setProduct_Id(id));
-
-		// To navidate to product page
-		navigation.navigate("Favourite");
-	};
-
 	const showProducts = () => {
 		dispatch(getProducts());
 	};

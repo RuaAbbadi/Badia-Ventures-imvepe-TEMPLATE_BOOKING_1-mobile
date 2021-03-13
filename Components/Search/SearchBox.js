@@ -15,7 +15,7 @@ const SearchBox = () => {
 			<TextInput
 				placeholder="Search For Food You Like"
 				placeholderTextColor="#696969"
-				style={{ marginRight: "auto" }}
+				style={{ marginRight: "auto", marginRight: wp(10) }}
 			/>
 		</View>
 	);
@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		borderWidth: 1.5,
 		borderColor: "#333533",
-		width: hp(214),
+		width: hp(240),
 		height: hp(43),
 		borderRadius: 8,
 		fontSize: 11,
-		marginBottom: 29,
-		marginTop: 29,
+		marginTop: wp(29),
+		marginLeft: wp(29),
 	},
 });

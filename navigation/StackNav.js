@@ -10,10 +10,11 @@ import { TouchableOpacity } from "react-native";
 import Home from "../Screens/Home/Home";
 import Profile from "../Screens/Profile/Profile";
 import Choose from "../Screens/Booking/Choose";
-import BookTable from "../Screens/Booking/BookTable";
 import { wp, hp } from "../Components/Dimension/dimen";
 import { Feather } from "@expo/vector-icons";
 import Favourite from "../Screens/Profile/Favourite";
+import HomeBookTable from "../Screens/Home/HomeBookTable";
+import BookTable from "../Screens/Booking/BookTable";
 
 const AuthStack = createStackNavigator();
 
@@ -58,8 +59,8 @@ const MyStack = ({ navigation }) => {
 				}}
 			>
 				<AuthStack.Screen
-					name="Home"
-					component={Home}
+					name=" HomeBookTable"
+					component={HomeBookTable}
 					options={{ title: "", headerShown: false }}
 				/>
 

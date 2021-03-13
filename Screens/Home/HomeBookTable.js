@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -7,9 +7,8 @@ import {
 	FlatList,
 	ScrollView,
 	Dimensions,
-	Image,
-	TextInput,
 	ImageBackground,
+	ActivityIndicator,
 } from "react-native";
 import Stars from "react-native-stars";
 import { Ionicons } from "@expo/vector-icons";
@@ -19,8 +18,35 @@ import SearchBox from "../../Components/Search/SearchBox";
 import Cat2 from "../../Components/Menus/cat2";
 import BookTableButton from "../../Components/Buttons/BookButton";
 import { wp, hp } from "../../Components/Dimension/dimen";
+import { getProducts, setProductId } from "../../Store/Products/Actions";
+import { setProduct_Id } from "../../Store/Favourites/Actions";
+import { useDispatch, useSelector } from "react-redux";
+import FavList from "../../Components/Lists/FavList";
+import { SuggestionCard } from "../../Components/cards/SuggestionCard";
 
 export default function HomeBookTable({ navigation }) {
+	const dispatch = useDispatch();
+	const { isLoading, success, failed, products, errorMsg } = useSelector(
+		(state) => state.Product
+	);
+
+	const pressChoose = (id) => {
+		// To get the product id
+		dispatch(setProductId(id));
+		console.log(setProductId(id));
+
+		// To navidate to product page
+		navigation.navigate("Choose");
+	};
+
+	const showProducts = () => {
+		dispatch(getProducts());
+	};
+
+	useEffect(() => {
+		showProducts();
+	}, []);
+
 	const meals = [
 		{ name: " Pasta", key: "1" },
 		{ name: " Pasta", key: "2" },
@@ -28,13 +54,14 @@ export default function HomeBookTable({ navigation }) {
 	];
 
 	const { width } = Dimensions.get("window");
+	function pressToBook() {
+		navigation.navigate("BookTable");
+	}
 
 	function navigateToProfile() {
 		navigation.navigate("Profile");
 	}
-	function pressChoose() {
-		navigation.navigate("Choose");
-	}
+
 	return (
 		<View style={styles.container}>
 			<View style={{ flexDirection: "row", marginTop: 35, marginLeft: 29 }}>
@@ -67,144 +94,32 @@ export default function HomeBookTable({ navigation }) {
 					<Text style={{ fontSize: 23 }}>Suggestions</Text>
 				</View>
 
-				<FlatList
-					data={meals}
-					showsHorizontalScrollIndicator={false}
-					horizontal={true}
-					renderItem={({ item }) => (
-						<View style={styles.Foodlist}>
-							<ImageBackground
-								style={styles.ImageBack}
-								imageStyle={{
-									resizeMode: "cover",
-									borderRadius: 5,
-									backgroundColor: "#000000",
-									opacity: 0.5,
-								}}
-								source={require("../../assets/pasta.png")}
-							>
-								<View style={{ flexDirection: "row" }}>
-									<View>
-										<Text
-											style={{
-												fontSize: 13,
-												color: "white",
-												fontWeight: "bold",
-											}}
-										>
-											{item.name}
-										</Text>
-									</View>
-									<View
-										style={{ flexDirection: "row-reverse", marginRight: 60 }}
-									>
-										<Ionicons name="heart" size={13} color="white" />
-									</View>
-								</View>
-
-								<View
-									style={{ flexDirection: "row", marginTop: 68, marginLeft: 9 }}
-								>
-									<Stars
-										default={3}
-										count={5}
-										half={true}
-										starSize={40}
-										fullStar={
-											<Fontisto name={"star"} style={[styles.myStarStyle]} />
-										}
-										emptyStar={
-											<Feather
-												name={"star"}
-												style={[styles.myStarStyle, styles.myEmptyStarStyle]}
-											/>
-										}
-										halfStar={
-											<Fontisto
-												name={"star-half"}
-												style={[styles.myStarStyle]}
-											/>
-										}
-									/>
-								</View>
-							</ImageBackground>
-						</View>
-					)}
-				/>
-
-				<View style={{ flexDirection: "row", alignSelf: "center" }}>
+				{isLoading ? (
+					<View>
+						<ActivityIndicator size="large" color="#333533" />
+					</View>
+				) : (
+					<FlatList
+						data={products}
+						showsHorizontalScrollIndicator={false}
+						horizontal={true}
+						renderItem={({ item }) => (
+							<SuggestionCard item={item} pressChoose={pressChoose} />
+						)}
+					/>
+				)}
+				<View
+					style={{
+						flexDirection: "row",
+					}}
+				>
 					<SearchBox />
 					<Cat2 />
-					<BookTableButton />
+					<BookTableButton pressToBook={pressToBook} />
 				</View>
 
 				<View>
-					<FlatList
-						data={meals}
-						renderItem={({ item }) => (
-							<TouchableOpacity
-								style={styles.Form1}
-								onPress={() => pressChoose()}
-							>
-								<ImageBackground
-									style={styles.ImageBack2}
-									imageStyle={{
-										resizeMode: "cover",
-										borderRadius: 5,
-										backgroundColor: "#000000",
-										opacity: 0.56,
-									}}
-									source={require("../../assets/pasta.png")}
-								>
-									<View style={{ flexDirection: "row" }}>
-										<Text style={styles.Title}>{item.name}</Text>
-
-										<View
-											style={{
-												flexDirection: "row-reverse",
-												marginRight: 200,
-												marginTop: 8,
-											}}
-										>
-											<TouchableOpacity>
-												<Ionicons name="heart" size={15} color="white" />
-											</TouchableOpacity>
-										</View>
-									</View>
-
-									<View
-										style={{
-											flexDirection: "row",
-											marginTop: 15,
-											marginLeft: 23,
-										}}
-									>
-										<Stars
-											default={3}
-											count={5}
-											half={true}
-											starSize={100}
-											fullStar={
-												<Fontisto name={"star"} style={[styles.myStarStyle]} />
-											}
-											emptyStar={
-												<Feather
-													name={"star"}
-													style={[styles.myStarStyle, styles.myEmptyStarStyle]}
-												/>
-											}
-											halfStar={
-												<Fontisto
-													name={"star-half"}
-													style={[styles.myStarStyle]}
-												/>
-											}
-										/>
-									</View>
-								</ImageBackground>
-							</TouchableOpacity>
-						)}
-					/>
+					<FavList products={products} pressChoose={pressChoose} />
 				</View>
 			</ScrollView>
 		</View>

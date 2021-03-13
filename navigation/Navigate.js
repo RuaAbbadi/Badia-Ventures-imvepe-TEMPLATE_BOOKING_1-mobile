@@ -22,6 +22,7 @@ import Calendar from "../Screens/Profile/Calendar";
 import BookTable from "../Screens/Booking/BookTable";
 import Drawer from "../navigation/Drawer";
 import Favourite from "../Screens/Profile/Favourite";
+import HomeBookTable from "../Screens/Home/HomeBookTable";
 
 const AuthStack = createStackNavigator();
 

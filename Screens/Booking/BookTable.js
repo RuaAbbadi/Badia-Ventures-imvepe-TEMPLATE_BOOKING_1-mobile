@@ -15,7 +15,7 @@ import { AntDesign } from "@expo/vector-icons";
 import Navigate from "../../navigation/Navigate";
 import { wp, hp } from "../../Components/Dimension/dimen";
 
-export default BookTable = () => {
+export default BookTable = ({ navigation }) => {
 	const pressBack = () => {
 		navigation.navigate("Choose");
 	};
@@ -33,7 +33,7 @@ export default BookTable = () => {
 	];
 
 	return (
-		<View style={{ backgroundColor: "#FFFFFF" }}>
+		<View style={{ backgroundColor: "#FFFFFF", flex: 1 }}>
 			<View style={{ flexDirection: "row", marginTop: hp(47) }}>
 				<Feather
 					name="arrow-left"
@@ -42,9 +42,7 @@ export default BookTable = () => {
 					style={{ marginLeft: wp(48), marginTop: hp(5) }}
 					onPress={() => pressBack()}
 				/>
-				<Text style={{ marginLeft: wp(68), fontSize: 23, fontWeight: "600" }}>
-					Book Table{" "}
-				</Text>
+				<Text style={{ marginLeft: wp(68), fontSize: 23 }}>Book Table </Text>
 			</View>
 
 			<View style={{ marginLeft: wp(48), marginTop: hp(68) }}>
@@ -138,7 +136,6 @@ export default BookTable = () => {
 					<Text
 						style={{
 							fontSize: 13,
-							fontWeight: "10",
 							padding: 5,
 							color: "#FFFFFF",
 						}}

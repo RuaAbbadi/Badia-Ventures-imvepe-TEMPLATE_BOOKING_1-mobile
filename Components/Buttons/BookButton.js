@@ -7,13 +7,14 @@ import {
 } from "react-native";
 import { wp, hp } from "../Dimension/dimen";
 
-const BookTableButton = () => {
+const BookTableButton = ({ navigation, pressToBook }) => {
 	return (
 		<View>
-			<TouchableOpacity style={styles.Touch}>
+			<TouchableOpacity style={styles.Touch} onPress={pressToBook}>
 				<ImageBackground
 					style={{
 						resizeMode: "cover",
+						opacity: 0.8,
 						borderRadius: 5,
 						width: 27.48,
 						height: 15.02,
@@ -35,6 +36,6 @@ const styles = StyleSheet.create({
 		backgroundColor: "#333533",
 		width: wp(43),
 		height: hp(43),
-		marginTop: hp(29),
+		marginTop: hp(33),
 	},
 });

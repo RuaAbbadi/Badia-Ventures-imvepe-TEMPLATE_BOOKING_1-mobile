@@ -158,16 +158,7 @@ const styles = StyleSheet.create({
 		color: "#F5CB5C",
 		paddingRight: 1,
 	},
-	ImageBack: {
-		marginRight: wp(20),
-		height: hp(122),
-		width: wp(122),
-		marginTop: hp(20),
-	},
-	Foodlist: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-	},
+
 	ImageBack2: {
 		marginTop: hp(29),
 		alignSelf: "center",

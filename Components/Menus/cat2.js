@@ -9,7 +9,7 @@ const Cat2 = () => {
 			<TouchableOpacity style={styles.contanier}>
 				<Feather
 					name="align-left"
-					size={25}
+					size={28}
 					color="#000000"
 					style={{
 						marginLeft: wp(16),
@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		marginRight: wp(8),
 		marginLeft: wp(10),
-		marginTop: hp(29),
+		marginTop: hp(33),
 	},
 });
