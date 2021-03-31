@@ -6,8 +6,11 @@ import {
 	GET_PRODUCT_ID_SUCCESS,
 	GET_PRODUCT_ID_FAIL,
 	SET_PRODUCT_ID,
+	SET_SELECTED_DAY,
+	SET_SELECTED_TIME,
+	SET_SELECTED_COUNT,
 } from "./Constants";
-import { apiGet } from "../utils/Api";
+import { apiGet, apiPost } from "../utils/Api";
 
 export const getProducts = () => {
 	return async (dispatch, getState) => {
@@ -78,3 +81,18 @@ export const getProductByID = () => {
 		}
 	};
 };
+
+export const selectedDay = (day) => ({
+	type: SET_SELECTED_DAY,
+	payload: day,
+});
+
+export const selectedTime = (time) => ({
+	type: SET_SELECTED_TIME,
+	payload: time,
+});
+
+export const selectedCount = (count) => ({
+	type: SET_SELECTED_TIME,
+	payload: count,
+});

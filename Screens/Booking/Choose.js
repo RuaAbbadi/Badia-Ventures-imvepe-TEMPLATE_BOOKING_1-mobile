@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -19,8 +19,6 @@ import { wp, hp } from "../../Components/Dimension/dimen";
 import { getProductByID } from "../../Store/Products/Actions";
 import { useDispatch, useSelector } from "react-redux";
 
-const height = width;
-
 export default function Choose({ navigation }) {
 	const dispatch = useDispatch();
 	const {
@@ -35,6 +33,17 @@ export default function Choose({ navigation }) {
 			value: "one",
 		},
 	];
+	const [count, setCount] = useState(3);
+	const incrementCount = () => {
+		setCount(count + 1);
+	};
+
+	const DecrementCount = () => {
+		setCount(count - 1);
+		if (count == 1) {
+			setCount(1);
+		}
+	};
 
 	const productDetails = () => {
 		dispatch(getProductByID());
@@ -73,18 +82,19 @@ export default function Choose({ navigation }) {
 						justifyContent: "center",
 					}}
 				>
-					<Feather
-						name="arrow-left"
-						size={20}
-						color="#FFFFFF"
-						style={{
-							marginRight: wp(16.56),
-							marginLeft: wp(15),
-							marginTop: hp(17),
-							marginBottom: hp(16.56),
-						}}
-						onPress={() => pressBack()}
-					/>
+					<TouchableOpacity onPress={pressBack}>
+						<Feather
+							name="arrow-left"
+							size={20}
+							color="#FFFFFF"
+							style={{
+								marginRight: wp(16.56),
+								marginLeft: wp(15),
+								marginTop: hp(17),
+								marginBottom: hp(16.56),
+							}}
+						/>
+					</TouchableOpacity>
 				</View>
 
 				<Image
@@ -126,14 +136,20 @@ export default function Choose({ navigation }) {
 										color: "#FFFFFF",
 									}}
 								>
-									3
+									{count}
 								</Text>
 							</View>
 
-							<TouchableOpacity style={styles.Avaiable1}>
+							<TouchableOpacity
+								style={styles.Avaiable1}
+								onPress={incrementCount}
+							>
 								<AntDesign name="pluscircle" color="#333533" size={18} />
 							</TouchableOpacity>
-							<TouchableOpacity style={styles.Avaiable1}>
+							<TouchableOpacity
+								style={styles.Avaiable1}
+								onPress={DecrementCount}
+							>
 								<AntDesign name="minuscircle" color="#333533" size={18} />
 							</TouchableOpacity>
 						</View>
@@ -193,7 +209,7 @@ export default function Choose({ navigation }) {
 							{/* Button */}
 							<TouchableOpacity
 								style={styles.DoneButton}
-								onPress={() => BookNow()}
+								//onPress={() => BookNow()}
 							>
 								<Text style={styles.DoneText}>Done </Text>
 							</TouchableOpacity>

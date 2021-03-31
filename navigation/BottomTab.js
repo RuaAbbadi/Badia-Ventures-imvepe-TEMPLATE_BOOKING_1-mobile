@@ -9,7 +9,12 @@ import Favourite from "../Screens/Profile/Favourite";
 import Notifications from "../Screens/Profile/Notifications";
 import { color } from "react-native-reanimated";
 import Calendar from "../Screens/Profile/Calendar";
-import StackNav from "./StackNav";
+import {
+	MainStack,
+	CalenderStackNavigator,
+	FavStackNavigator,
+	NotificationStackNavigator,
+} from "./StackNav";
 
 const Tab = createBottomTabNavigator();
 
@@ -39,7 +44,7 @@ function TabScreen({ navigation }) {
 		>
 			<Tab.Screen
 				name="Home"
-				component={StackNav}
+				component={MainStack}
 				options={{
 					tabBarIcon: ({ color }) => (
 						<Fontisto name="home" size={20} color={color} />
@@ -49,7 +54,7 @@ function TabScreen({ navigation }) {
 
 			<Tab.Screen
 				name="Calendar"
-				component={Calendar}
+				component={CalenderStackNavigator}
 				options={{
 					tabBarVisible: false,
 					tabBarIcon: ({ color }) => (
@@ -64,7 +69,7 @@ function TabScreen({ navigation }) {
 
 			<Tab.Screen
 				name="Notifications"
-				component={Notifications}
+				component={NotificationStackNavigator}
 				options={{
 					tabBarIcon: ({ color }) => (
 						<Fontisto name="bell-alt" size={20} color={color} />
@@ -74,7 +79,7 @@ function TabScreen({ navigation }) {
 
 			<Tab.Screen
 				name="Favourite"
-				component={Favourite}
+				component={FavStackNavigator}
 				options={{
 					tabBarIcon: ({ color }) => (
 						<Ionicons name="heart" size={23} color={color} />

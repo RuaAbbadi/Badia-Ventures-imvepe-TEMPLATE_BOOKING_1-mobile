@@ -12,6 +12,7 @@ import {
 	UPDATE_PROFILE_SUCCESS,
 	UPDATE_PROFILE_FAIL,
 	UPDATE_PROFILE_FROM_FAV_SUCCESS,
+	USER_LOGEDOUT_SUCCESS,
 } from "./Constants";
 
 export const AuthReducer = (
@@ -122,6 +123,14 @@ export const AuthReducer = (
 				isLoading: false,
 				errorMsg: action.payload,
 				failed: true,
+			};
+		case USER_LOGEDOUT_SUCCESS:
+			return {
+				...initialState,
+				user: {},
+				token: "",
+				isLoading: false,
+				success: true,
 			};
 
 		default:

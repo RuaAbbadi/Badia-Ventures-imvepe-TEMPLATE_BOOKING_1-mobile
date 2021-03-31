@@ -46,7 +46,7 @@ const Signup = ({ navigation }) => {
 
 	useEffect(() => {
 		if (success) {
-			navigation.navigate("BottomTab");
+			navigation.navigate("Drawer");
 		}
 	}, [success]);
 

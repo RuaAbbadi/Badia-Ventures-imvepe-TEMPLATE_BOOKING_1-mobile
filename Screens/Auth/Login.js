@@ -33,9 +33,9 @@ const Login = ({ navigation }) => {
 
 	useEffect(() => {
 		if (success) {
-			navigation.navigate("BottomTab");
+			navigation.navigate("Drawer");
 		} else if (user.name) {
-			navigation.navigate("BottomTab");
+			navigation.navigate("Drawer");
 		}
 	}, [success, user]);
 

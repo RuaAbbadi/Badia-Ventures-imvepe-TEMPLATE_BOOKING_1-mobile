@@ -3,13 +3,11 @@ import thunk from "redux-thunk";
 import { AuthReducer } from "./User/Reducer";
 import { ProductReducer } from "./Products/Reducer";
 import { FavouritesReducer } from "./Favourites/Reducer";
-import { CalendarReducer } from "./Calendar/Reducer";
 
 const reducer = combineReducers({
 	Login: AuthReducer,
 	Product: ProductReducer,
 	Favourites: FavouritesReducer,
-	Calendar: CalendarReducer,
 });
 
 const initialState = {

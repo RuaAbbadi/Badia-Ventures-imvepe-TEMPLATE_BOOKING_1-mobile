@@ -13,11 +13,12 @@ const SearchBox2 = () => {
 				style={{
 					marginLeft: wp(16),
 					marginBottom: hp(13.12),
+					marginTop: hp(13.12),
 				}}
 			/>
 			<TextInput
 				placeholder="Search For Food You Like"
-				placeholderTextColor="#696969"
+				placeholderTextColor="#00000029"
 				style={{
 					marginLeft: wp(18.25),
 					alignSelf: "center",

@@ -183,20 +183,6 @@ export default function Profile() {
 						</>
 					)}
 				</Formik>
-				{/* 
-				<View style={{ alignItems: "center" }}>
-					<TouchableOpacity>
-						<Text
-							style={{
-								fontSize: 15,
-								color: "#00000029",
-							}}
-						>
-							{" "}
-							Change Password
-						</Text>
-					</TouchableOpacity>
-				</View> */}
 			</ScrollView>
 		</View>
 	);

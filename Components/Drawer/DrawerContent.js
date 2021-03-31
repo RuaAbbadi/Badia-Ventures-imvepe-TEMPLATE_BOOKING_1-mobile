@@ -1,32 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
-import {
-	useTheme,
-	Avatar,
-	Title,
-	Caption,
-	Paragraph,
-	Drawer,
-	Text,
-	TouchableRipple,
-	Switch,
-} from "react-native-paper";
+import { Title, Drawer } from "react-native-paper";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { MaterialIcons } from "react-native-vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Entypo } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { USER_LOGEDOUT_SUCCESS } from "../../Store/User/Constants";
 
 export const AuthContext = React.createContext();
-export function DrawerContent(props) {
+export function DrawerContent(props, { navigation }) {
+	const dispatch = useDispatch();
+	const { user, errorMsg, isLoading, success } = useSelector(
+		(state) => state.Login
+	);
+	const state = useSelector((state) => state);
+	const [name, setName] = useState(user.name);
+
+	let user2 = {};
+	async function Logout() {
+		user2 = await AsyncStorage.removeItem("user");
+		token = await AsyncStorage.removeItem("token");
+
+		dispatch({
+			type: USER_LOGEDOUT_SUCCESS,
+			payload: {},
+		});
+		navigation.navigate("Splash");
+	}
+
 	return (
 		<View style={{ flex: 1 }}>
 			<DrawerContentScrollView {...props}>
 				<View style={styles.drawerContent}>
 					<View>
 						<View style={{ marginLeft: 29, flexDirection: "row" }}>
-							<Title style={styles.title}>Ru'a Abbadi</Title>
+							<Title style={styles.title}>{name}</Title>
 							<TouchableOpacity
 								onPress={() => {
 									props.navigation.navigate("Home");
@@ -104,7 +116,7 @@ export function DrawerContent(props) {
 							}}
 						/>
 					</Drawer.Section>
-					<TouchableOpacity>
+					<TouchableOpacity onPress={Logout}>
 						<View
 							style={{
 								alignSelf: "center",

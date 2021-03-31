@@ -28,7 +28,7 @@ export const Splash = ({ navigation }) => {
 					user: parsedUser,
 				},
 			});
-			navigation.navigate("BottomTab");
+			navigation.navigate("Drawer");
 		}
 		console.log("here", parsedUser);
 	}

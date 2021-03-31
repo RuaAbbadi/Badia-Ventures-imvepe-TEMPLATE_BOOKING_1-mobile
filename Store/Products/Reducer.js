@@ -6,6 +6,9 @@ import {
 	GET_PRODUCT_ID_SUCCESS,
 	GET_PRODUCT_ID_FAIL,
 	SET_PRODUCT_ID,
+	SET_SELECTED_DAY,
+	SET_SELECTED_TIME,
+	SET_SELECTED_COUNT,
 } from "./Constants";
 
 export const ProductReducer = (
@@ -22,6 +25,13 @@ export const ProductReducer = (
 			failed: false,
 			success: false,
 			errorMsg: "",
+		},
+		booking: {
+			day: null,
+			time: null,
+		},
+		persons: {
+			count: 0,
 		},
 	},
 	action
@@ -76,6 +86,32 @@ export const ProductReducer = (
 					isLoading: false,
 					errorMsg: action.payload,
 					failed: true,
+				},
+			};
+
+		case SET_SELECTED_DAY:
+			return {
+				...initialState,
+				booking: {
+					...initialState.booking,
+					day: action.payload,
+				},
+			};
+		case SET_SELECTED_TIME:
+			return {
+				...initialState,
+				booking: {
+					...initialState.booking,
+					time: action.payload,
+				},
+			};
+
+		case SET_SELECTED_COUNT:
+			return {
+				...initialState,
+				persons: {
+					...initialState.persons,
+					count: action.payload,
 				},
 			};
 

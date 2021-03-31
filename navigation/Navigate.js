@@ -15,18 +15,11 @@ import {
 import Login from "../Screens/Auth/Login";
 import Signup from "../Screens/Auth/Signup";
 import splash from "../Screens/Auth/Splash";
-import BottomTab from "./BottomTab";
-import Profile from "../Screens/Profile/Profile";
-import Choose from "../Screens/Booking/Choose";
-import Calendar from "../Screens/Profile/Calendar";
-import BookTable from "../Screens/Booking/BookTable";
 import Drawer from "../navigation/Drawer";
-import Favourite from "../Screens/Profile/Favourite";
-import HomeBookTable from "../Screens/Home/HomeBookTable";
 
 const AuthStack = createStackNavigator();
 
-const MyStack = () => {
+const MyStack = ({ navigation }) => {
 	return (
 		<NavigationContainer>
 			<AuthStack.Navigator
@@ -51,13 +44,7 @@ const MyStack = () => {
 					options={{ headerShown: false }}
 				/>
 
-				<AuthStack.Screen name="BottomTab" component={BottomTab} options={{}} />
-
-				<AuthStack.Screen
-					name="Profile"
-					component={Profile}
-					options={{ headerShown: false }}
-				/>
+				<AuthStack.Screen name="Drawer" component={Drawer} options={{}} />
 			</AuthStack.Navigator>
 		</NavigationContainer>
 	);

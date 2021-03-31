@@ -13,7 +13,7 @@ import Splash from "./Screens/Auth/Splash";
 import HomeBookTable from "./Screens/Home/HomeBookTable";
 import HomeC from "./Screens/Home/HomeC";
 import BookTable from "./Screens/Booking/BookTable";
-
+import TabScreen from "./navigation/BottomTab";
 export default function App() {
 	LogBox.ignoreAllLogs(true);
 

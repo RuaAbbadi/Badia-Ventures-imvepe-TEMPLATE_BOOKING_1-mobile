@@ -5,11 +5,13 @@ import { CalendarList } from "react-native-calendars";
 import { wp, hp } from "../../Components/Dimension/dimen";
 import { Feather } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { selectedDay } from "../../Store/Calendar/Actions";
+import { selectedDay } from "../../Store/Products/Actions";
 
 const Calendar = ({ navigation }) => {
 	const dispatch = useDispatch();
-	const { daySelected } = useSelector((state) => state.Calendar);
+	const {
+		productStatus: { product, isLoading },
+	} = useSelector((state) => state.Product);
 
 	const [day, setDay] = useState(null);
 
@@ -19,8 +21,8 @@ const Calendar = ({ navigation }) => {
 
 	const getDay = (day) => {
 		setDay(day);
-		console.log("selected day", day);
-		//selectedDay(day);
+		navigation.navigate("bookTable");
+		selectedDay(day);
 	};
 
 	return (
@@ -82,12 +84,18 @@ const Calendar = ({ navigation }) => {
 										marginBottom: hp(10),
 									},
 									dayHeader: {
-										marginTop: 2,
 										marginBottom: 7,
 										color: "#E1E1E1",
 									},
+									week: {
+										marginTop: 10,
+										flexDirection: "row",
+										justifyContent: "space-around",
+									},
 								},
 							}}
+							markingType={"period"}
+							markedDates={product.Reserved}
 						/>
 					</View>
 				</View>
